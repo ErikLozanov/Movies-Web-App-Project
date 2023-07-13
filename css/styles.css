@@ -15,5 +15,9 @@
 
 
 .welcome {
-    margin-left: 1000px;
+    margin-left: 700px;
 }
+
+textarea {
+    resize: none;
+  }

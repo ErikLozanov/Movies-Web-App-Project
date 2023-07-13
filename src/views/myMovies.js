@@ -4,6 +4,6 @@ const myMoviesTemplate = () => html`
     <h1>My Movies Page</h1>
 `
 
-export function MyMoviesView() {
+export function myMoviesView() {
     render(myMoviesTemplate(), document.querySelector('main'));
 }

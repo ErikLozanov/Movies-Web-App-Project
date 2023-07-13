@@ -7,7 +7,7 @@ export function updateWelcome() {
     const isLogged = Boolean(localStorage.getItem('email'));
 
 const welcomeTemplate = () => html`
-    <li class="nav-link welcome">Welcome <span>${isLogged ? `back, ${localStorage.getItem('email')}` : nothing}</span>!</li>
+    <li class="nav-link welcome">Welcome <span>${isLogged ? `back, ${localStorage.getItem('email')}` : 'guest'}</span>!</li>
 `
 
     render(welcomeTemplate(), document.querySelector('.navbar-nav'));
