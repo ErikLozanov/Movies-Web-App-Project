@@ -6,3 +6,9 @@
 .loginForm h1 {
     margin-bottom: 60px;
 }
+
+#movieCards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}

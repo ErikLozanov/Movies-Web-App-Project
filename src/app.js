@@ -11,6 +11,8 @@ page('/login',loginView);
 page('/register', registerView);
 
 page.start();
+
+
 updateNav();
 export function updateNav() {
 const isLogged = Boolean(localStorage.ownerId);
