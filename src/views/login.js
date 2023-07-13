@@ -53,6 +53,7 @@ async function onSubmit(e) {
         const result = await response.json();
         localStorage.setItem('token', result.accessToken);
         localStorage.setItem('ownerId', result._id);
+        localStorage.setItem('email', result.email);
 
         page.redirect('/');
         updateNav();

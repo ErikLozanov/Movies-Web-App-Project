@@ -17,7 +17,7 @@ const registerTemplate = () => html`
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Repeat Password</label>
-    <input type="password" name="rePassword" class="form-control" id="exampleInputPassword1">
+    <input type="password" name="rePassword" class="form-control" id="exampleInputPassword2">
   </div>
   <div class ="mb-3">
       <p>Already have an account? <a href="/login" >Click here</a> to log in!</p>
@@ -44,6 +44,10 @@ async function onSubmit(e) {
 
     try {
 
+        if(password !== rePassword) {
+            throw new Error('Passwords do not match!');
+        }
+
         if(email == '' || password == '' || rePassword == '') {
             throw new Error('Please fill in all inputs!');
         }
@@ -61,6 +65,7 @@ async function onSubmit(e) {
         const result = await response.json();
         localStorage.setItem('token', result.accessToken);
         localStorage.setItem('ownerId', result._id);
+        localStorage.setItem('email', result.email);
 
         page.redirect('/');
         updateNav();

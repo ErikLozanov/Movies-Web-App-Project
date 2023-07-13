@@ -4,6 +4,7 @@ import { homeView } from './views/home.js';
 import { loginView } from './views/login.js';
 import { MyMoviesView } from './views/myMovies.js';
 import { registerView } from './views/register.js';
+import * as welcome from './views/welcome.js';
 
 page('/',homeView);
 page('/my-movies', MyMoviesView);
@@ -12,16 +13,31 @@ page('/register', registerView);
 
 page.start();
 
-
+welcome.updateWelcome();
 updateNav();
 export function updateNav() {
+
 const isLogged = Boolean(localStorage.ownerId);
 if(isLogged) {
     document.querySelector('.user').style.display = 'block';
     document.querySelectorAll('.guest').forEach(x=> x.style.display = 'none');
+    welcome.updateWelcome();
 } else {
     document.querySelector('.user').style.display = 'none';
     document.querySelectorAll('.guest').forEach(x=> x.style.display = 'block');
+    welcome.updateWelcome();
 
 }
+}
+
+document.querySelector('.logout').addEventListener('click',logout);
+
+async function logout() {
+    
+    const response = await fetch('http://localhost:3030/users/logout',{
+        headers: {'X-Authorization': localStorage.token}
+    });
+
+    localStorage.clear();
+    updateNav();
 }
