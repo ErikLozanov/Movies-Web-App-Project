@@ -10,5 +10,16 @@ page('/my-movies', MyMoviesView);
 page('/login',loginView);
 page('/register', registerView);
 
-
 page.start();
+updateNav();
+export function updateNav() {
+const isLogged = Boolean(localStorage.ownerId);
+if(isLogged) {
+    document.querySelector('.user').style.display = 'block';
+    document.querySelectorAll('.guest').forEach(x=> x.style.display = 'none');
+} else {
+    document.querySelector('.user').style.display = 'none';
+    document.querySelectorAll('.guest').forEach(x=> x.style.display = 'block');
+
+}
+}

@@ -1,5 +1,6 @@
 import {html,render} from '../../node_modules/lit-html/lit-html.js';
 import page from '../../node_modules/page/page.mjs';
+import { updateNav } from '../app.js';
 
 const loginTemplate = () => html`
 <div class="loginForm" >
@@ -54,12 +55,10 @@ async function onSubmit(e) {
         localStorage.setItem('ownerId', result._id);
 
         page.redirect('/');
+        updateNav();
     } catch (error) {
         alert(error.message)
     }
-
-
-    console.log(result);
 }
 
 
