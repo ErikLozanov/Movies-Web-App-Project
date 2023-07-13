@@ -1,0 +1,16 @@
+{
+  "name": "movies-web-app-project",
+  "version": "1.0.0",
+  "description": "A Movie web app where you can add your watched movies and see what others have watched.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lit-html": "^2.7.5",
+    "page": "^1.11.6"
+  }
+}
