@@ -7,10 +7,10 @@ const myMoviesTemplate = () => html`
     <form @submit=${onSubmit}>
   <div class="mb-3">
     <label for="movieTitle" class="form-label">Movie Name:</label>
-    <input type="email" name="movieTitle" class="form-control" id="movieTitle" aria-describedby="emailHelp">
+    <input type="text" name="movieTitle" class="form-control" id="movieTitle" aria-describedby="emailHelp">
   </div>
   <div class="mb-3">
-    <label for="movieYear" class="form-label">Movie Year:</label>
+    <label for="moviePlot" class="form-label">Movie Year:</label>
     <input type="text" name="movieYear" class="form-control" id="movieYear">
   </div>
   <div class="mb-3">
@@ -36,6 +36,40 @@ export function addMovieView() {
 
 
 
-function onSubmit() {
+async function onSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const title = formData.get('movieTitle');
+    const year = formData.get('movieYear');
+    const director = formData.get('movieDirector');
+    const posterUrl = formData.get('movieImg');
+    const plot = formData.get('moviePlot');
+
+    try {
+        if(movieTitle == '' || movieYear == '' || movieDirector == '' || movieImg == '' || moviePlot == '') {
+            throw new Error('Please fill in all inputs!');
+        }        
+
+        const response = await fetch('http://localhost:3030/data/movies',{
+            method: 'POST',
+            headers: {'X-Authorization': localStorage.token, 'Content-Type': 'application/json'},
+            body: JSON.stringify({title,year,director,posterUrl,plot})
+        })
+
+        if(!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message);
+        }
+
+        let res = await response.json();
+
+        console.log(res);
+        page.redirect('/');
+    } catch (error) {
+        alert(error.message);
+        throw error;
+    }
 
 }
