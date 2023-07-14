@@ -6,7 +6,7 @@ const movieCard = (movie) => html`
   <img src="${movie.posterUrl}" class="card-img-top" alt="${movie.title}">
   <div class="card-body">
     <h5 class="card-title">${movie.title}</h5>
-    <a href="#" class="btn btn-primary">Details</a>
+    <a href="/details/${movie._id}" class="btn btn-primary">Details</a>
   </div>
 </div>
 `;
