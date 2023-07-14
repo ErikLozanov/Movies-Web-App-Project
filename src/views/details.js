@@ -11,7 +11,7 @@ const detailsTemplate = (movie) => html`<div class="card text-center">
   <p class="card-text">${movie.description}</p>
   ${localStorage.ownerId == movie._ownerId ?   
   html`<a href="#" class="btn btn-primary deleteBtn">Delete</a>
-  <a href="#" class="btn btn-primary editBtn">Edit</a>` : nothing }
+  <a href="/edit/${movie._id}" class="btn btn-primary editBtn">Edit</a>` : nothing }
 
 </div>
 <div class="card-footer text-body-secondary">

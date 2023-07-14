@@ -2,6 +2,7 @@ import {html,render} from '../node_modules/lit-html/lit-html.js';
 import page from '../node_modules/page/page.mjs';
 import { addMovieView } from './views/addMovie.js';
 import { detailsView } from './views/details.js';
+import { editView } from './views/edit.js';
 import { homeView } from './views/home.js';
 import { loginView } from './views/login.js';
 import { myMoviesView } from './views/myMovies.js';
@@ -14,6 +15,7 @@ page('/login',loginView);
 page('/register', registerView);
 page('/add-movie', addMovieView);
 page('/details/:detailsId', detailsView);
+page('/edit/:detailsId', editView);
 
 page.start();
 
