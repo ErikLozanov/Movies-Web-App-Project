@@ -1,5 +1,4 @@
 import {html,render} from '../../node_modules/lit-html/lit-html.js';
-import { getSearchedMovie } from './search.js';
 
 
 const movieCard = (movie) => html`
@@ -18,18 +17,40 @@ const homeTemplate = (movies) => html`
 </div>
 `
 
-export async function homeView(searchedMovie) {
 
-    const allMovies = await getAllMovies();
-    render(homeTemplate(allMovies), document.querySelector('main'));
-  
+let searchInput = null;
+
+
+
+
+export async function searchFunc(e) {
+  e.preventDefault();
+  let formData = new FormData(e.currentTarget);
+  searchInput = formData.get('searchForm');
+  debugger
+  homeView();
+}
+
+export async function homeView(ctx) {
+  const allMovies = await getAllMovies(searchInput);
+  render(homeTemplate(allMovies), document.querySelector('main'));
+
 }
 
 
-async function getAllMovies() {
-    const response = await fetch('http://localhost:3030/data/movies');
+export async function getAllMovies(searchInput) {
+  let response = null;
+  if(searchInput === null) {
+    response = await fetch('http://localhost:3030/data/movies');
+    console.log('hi');
+  } else {
+    response = await fetch(`http://localhost:3030/data/movies?where=title%20like%20%22${searchInput}%22`);
+    console.log('bye');
+  }
 
     const result = await response.json();
 
     return result;
 }
+
+

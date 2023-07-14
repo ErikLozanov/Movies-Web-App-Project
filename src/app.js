@@ -7,8 +7,8 @@ import { homeView } from './views/home.js';
 import { loginView } from './views/login.js';
 import { myMoviesView } from './views/myMovies.js';
 import { registerView } from './views/register.js';
+import { searchFunc } from './views/home.js';
 import * as welcome from './views/welcome.js';
-import { searchFunc } from './views/search.js';
 page('/',homeView);
 page('/my-movies', myMoviesView);
 page('/login',loginView);
@@ -16,6 +16,7 @@ page('/register', registerView);
 page('/add-movie', addMovieView);
 page('/details/:detailsId', detailsView);
 page('/edit/:detailsId', editView);
+page('/movies', homeView);
 
 page.start();
 
@@ -49,3 +50,6 @@ async function logout() {
     localStorage.clear();
     updateNav();
 }
+
+
+document.querySelector('.d-flex').addEventListener('submit', searchFunc);
