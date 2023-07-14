@@ -8,7 +8,7 @@ import { loginView } from './views/login.js';
 import { myMoviesView } from './views/myMovies.js';
 import { registerView } from './views/register.js';
 import * as welcome from './views/welcome.js';
-
+import { searchFunc } from './views/search.js';
 page('/',homeView);
 page('/my-movies', myMoviesView);
 page('/login',loginView);

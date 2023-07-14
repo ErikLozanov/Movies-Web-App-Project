@@ -1,4 +1,6 @@
 import {html,render} from '../../node_modules/lit-html/lit-html.js';
+import { getSearchedMovie } from './search.js';
+
 
 const movieCard = (movie) => html`
 <div class="card" style="width: 18rem;">
@@ -16,9 +18,11 @@ const homeTemplate = (movies) => html`
 </div>
 `
 
-export async function homeView() {
+export async function homeView(searchedMovie) {
+
     const allMovies = await getAllMovies();
     render(homeTemplate(allMovies), document.querySelector('main'));
+  
 }
 
 
