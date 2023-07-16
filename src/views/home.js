@@ -34,7 +34,6 @@ export async function searchFunc(e) {
 export async function homeView(ctx) {
   const allMovies = await getAllMovies(searchInput);
   render(homeTemplate(allMovies), document.querySelector('main'));
-  render(homeTemplate(allMovies), document.querySelector('main'));
 
 }
 
